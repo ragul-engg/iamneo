@@ -1,0 +1,37 @@
+GET http://localhost:3000/datas
+
+###
+
+POST http://localhost:3000/datas
+Content-Type: application/json
+
+{
+    "text":"to",
+    "list": ["list1","list2"],
+    "tag":["important"]
+}
+
+###
+
+GET http://localhost:3000/datas/634789d1bd488d60ce114a85
+
+
+###
+
+PATCH  http://localhost:3000/datas/634786faa2095c167b4d8a84
+Content-Type: application/json
+
+{
+    "tag":[
+        "less important",
+        "not important"
+    ]
+}
+
+###
+
+DELETE  http://localhost:3000/datas/634789d1bd488d60ce114a85
+
+###
+
+GET http://localhost:3000/searchData/tag/port
