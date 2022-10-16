@@ -3,19 +3,7 @@ GET http://localhost:3000/datas
 ###
 
 POST http://localhost:3000/datas
-Content-Type: application/json
-
-{
-    "text":"to",
-    "list": ["list1","list2"],
-    "tag":["important"]
-}
-
-###
-
-GET http://localhost:3000/datas/634b990e0ac0b479c14bbb07
-
-
+Content-Type: application/jsonq
 ###
 
 PATCH  http://localhost:3000/datas/634ba8fcba65c3a4519dbbce

@@ -28,7 +28,7 @@ route.get("/", async (req, res) => {
 
 route.get("/:id", getTodoData, async (req, res) => {
     try {
-        const datas = res.toDo
+        const datas = await res.toDo
         if (datas == null) {
             res.status(404).send("not found")
         } else {
@@ -105,3 +105,144 @@ async function getTodoData(req, res, next) {
 }
 
 module.exports = route
+
+/**
+ * Swagger Docs
+ * openapi: 3.0.1
+info:
+  title: defaultTitle
+  description: defaultDescription
+  version: '0.1'
+servers:
+  - url: https://todobackendapi.herokuapp.com
+paths:
+  /datas/634c19a7eb7bc192305734f3:
+    delete:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: https://todobackendapi.herokuapp.com
+    patch:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                tag:
+                  type: array
+                  items:
+                    type: string
+                list:
+                  type: array
+                  items:
+                    type: string
+            examples:
+              '0':
+                value: |-
+                  {
+                      "text":"test todo update"
+                  }
+              '1':
+                value: |-
+                  {
+                      "text":"test todo update 2",
+                      "list":["update list"],
+                      "tag":["imp"]
+                  }
+              '2':
+                value: |-
+                  {
+                      "text":"test todo update 2",
+                      "list":["update list"],
+                      "tag":["imp"]
+                  }
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: https://todobackendapi.herokuapp.com
+    servers:
+      - url: https://todobackendapi.herokuapp.com
+  /datas/:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: https://todobackendapi.herokuapp.com
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                tag:
+                  type: array
+                  items:
+                    type: string
+                list:
+                  type: array
+                  items:
+                    type: string
+            examples:
+              '0':
+                value: |-
+                  {
+                      "text":"test todo",
+                      "list":["test1","test2"],
+                      "tag":["important"]
+                  }
+      responses:
+        '201':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: https://todobackendapi.herokuapp.com
+    servers:
+      - url: https://todobackendapi.herokuapp.com
+  /datas/634c17d7eb7bc192305734e8:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: https://todobackendapi.herokuapp.com
+    servers:
+      - url: https://todobackendapi.herokuapp.com
+ */
