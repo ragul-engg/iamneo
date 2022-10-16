@@ -39,12 +39,11 @@ route.get("/:id", getTodoData, async (req, res) => {
 
 route.post("/", upload.single('img'), async (req, res) => {
     try {
-        console.log(req.file)
         const data = new todoData({
             text: req.body.text,
             list: req.body.list,
             tag: req.body.tag,
-            imageUrl: req.file.path
+            imageUrl: req.file.path.split(path.sep).join(path.posix.sep)
         })
         await data.save().then(data => {
             res.status(201).json(data)
