@@ -2,6 +2,8 @@ const express = require('express')
 const path = require('path')
 const todoData = require('../models/model')
 const multer = require('multer')
+const upath = require('upath')
+
 
 const storage = multer.diskStorage({
     destination: function (req, file, res) {
@@ -43,8 +45,10 @@ route.post("/", upload.single('img'), async (req, res) => {
             text: req.body.text,
             list: req.body.list,
             tag: req.body.tag,
-            imageUrl: req.file.path.split(path.sep).join(path.posix.sep)
         })
+        if (req.file) {
+            data.imageUrl = upath.toUnix(req.file.path)
+        }
         await data.save().then(data => {
             res.status(201).json(data)
         }).catch(err => {
