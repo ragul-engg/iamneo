@@ -1,5 +1,5 @@
 const express = require('express')
-const todoModel = require('../model')
+const todoModel = require('../models/model')
 
 const searchRoute = express.Router()
 

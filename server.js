@@ -1,6 +1,6 @@
 const express = require('express')
-const datas = require("./routes/datas")
-const searchData = require("./routes/searchData")
+const datas = require("./apis/routes/datas")
+const searchData = require("./apis/routes/searchData")
 const mongoose = require('mongoose')
 require("dotenv").config()
 
@@ -19,7 +19,7 @@ app.use(express.json())
 app.get("/", (req, res) => {
     res.send("Homepage")
 })
-
+app.use('/datas/images', express.static('images'))
 app.use('/datas', datas)
 app.use('/searchData', searchData)
 

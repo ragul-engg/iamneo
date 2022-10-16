@@ -1,7 +1,18 @@
 const express = require('express')
-const todoData = require('../model')
+const path = require('path')
+const todoData = require('../models/model')
 const multer = require('multer')
-const upload = multer({ dest: 'images/' })
+
+const storage = multer.diskStorage({
+    destination: function (req, file, res) {
+        res(null, './images/')
+    },
+    filename: function (req, file, res) {
+        res(null, new Date().getTime() + file.originalname)
+    }
+})
+
+const upload = multer({ storage: storage })
 const route = express.Router()
 
 route.get("/", async (req, res) => {
@@ -13,9 +24,9 @@ route.get("/", async (req, res) => {
     }
 })
 
-route.get("/:searchQuery", async (req, res) => {
+route.get("/:id", getTodoData, async (req, res) => {
     try {
-        const datas = await todoData.findOne({ _id: req.params.searchQuery })
+        const datas = res.toDo
         if (datas == null) {
             res.status(404).send("not found")
         } else {
@@ -26,13 +37,14 @@ route.get("/:searchQuery", async (req, res) => {
     }
 })
 
-route.post("/", upload.single('imgAdded'), async (req, res) => {
+route.post("/", upload.single('img'), async (req, res) => {
     try {
         console.log(req.file)
         const data = new todoData({
             text: req.body.text,
             list: req.body.list,
-            tag: req.body.tag
+            tag: req.body.tag,
+            imageUrl: req.file.path
         })
         await data.save().then(data => {
             res.status(201).json(data)
