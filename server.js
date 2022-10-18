@@ -2,8 +2,9 @@ const express = require('express')
 const datas = require("./apis/routes/datas")
 const searchData = require("./apis/routes/searchData")
 const mongoose = require('mongoose')
+const bodyparser = require('body-parser')
 const app = express()
-// require('dotenv').config()
+require('dotenv').config()
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 let port = process.env.PORT || 3000
 
@@ -14,7 +15,8 @@ dbConnect.on("error", (error) => {
 dbConnect.once("open", () => {
     console.log("db connected")
 })
-app.use(express.json())
+app.use(bodyparser.urlencoded({ extended: false }))
+app.use(bodyparser.json())
 app.get("/", (req, res) => {
     res.send("Homepage")
 })
