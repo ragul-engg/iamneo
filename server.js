@@ -3,7 +3,7 @@ const datas = require("./apis/routes/datas")
 const searchData = require("./apis/routes/searchData")
 const mongoose = require('mongoose')
 const app = express()
-
+// require('dotenv').config()
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 let port = process.env.PORT || 3000
 
